@@ -27,14 +27,6 @@ struct ProgramFlags
 	std::string solveFlagDest;
 };
 
-// ////////////////////////////////////
-// GAME STATES
-enum class GameState
-{
-	NONE,
-	TEST
-};
-
 class Program
 {
 public:
@@ -55,7 +47,6 @@ private:
 	ProgramFlags p_flags;
 
 	// -g state
-	GameState currentState = GameState::NONE;
 	std::unique_ptr<BaseScreen> screenPtr;
 
 	// helper functions
