@@ -1,16 +1,17 @@
 #pragma once
 #include <string>
-#include "managers/BaseManager.hpp"
 #include <SFML/Graphics.hpp>
 
-class FontManager : public BaseManager<FontManager>
+class FontManager
 {
 public:
+	FontManager() = default;
+	~FontManager() = default;
+	
+	void init();
 	void load(const std::string& key, const std::string& path);
 	const sf::Font& get(const std::string& name) const;
 
 private:
-	FontManager() = default;
-	~FontManager() = default;
-	std::unordered_map<std::string, sf::Font> fonts;
+	std::unordered_map<std::string, sf::Font> p_fonts;
 };
