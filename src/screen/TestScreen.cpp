@@ -1,5 +1,5 @@
 #include "screen/TestScreen.hpp"
-#include "app/globals.hpp"
+#include "app/GameContext.hpp"
 #include <SFML/Graphics.hpp>
 
 void TestScreen::update()
@@ -9,7 +9,7 @@ void TestScreen::update()
 
 void TestScreen::draw()
 {
-	const sf::Font& font = Contexts::gameContextPtr->getFont("VCR_OSD_MONO");
+	const sf::Font& font = GameContext::getFont("VCR_OSD_MONO");
 	sf::Text allOKText(font, "SFML all OK!", 50);
 
 	p_window->clear();

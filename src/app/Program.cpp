@@ -62,9 +62,7 @@ void Program::run()
 			sf::RenderWindow window(sf::VideoMode({1200, 800}), "poop");
 			screenPtr = std::make_unique<TestScreen>(window);
 
-			std::unique_ptr<FontManager> fontManagerPtr = std::make_unique<FontManager>();
-			fontManagerPtr->init();
-			Contexts::gameContextPtr = std::make_unique<GameContext>(*fontManagerPtr);
+			GameContext::init();
 
 			while (window.isOpen())
 			{

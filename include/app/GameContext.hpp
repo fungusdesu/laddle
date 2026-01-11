@@ -9,24 +9,20 @@ enum class GameState
 	TEST
 };
 
-class GameContext
+namespace GameContext
 {
-public:
-	GameContext(FontManager& fontManager) : p_fontManager(fontManager) {}
+	extern std::unique_ptr<FontManager> p_fontManagerPtr;
+	void init();
 
 	template <typename ...Ts>
 	void loadFont(Ts&&... yuke)
 	{
-		p_fontManager.load(std::forward<Ts>(yuke)...);
+		p_fontManagerPtr->load(std::forward<Ts>(yuke)...);
 	}
 
 	template <typename ...Ts>
 	const sf::Font& getFont(Ts&&... yuke)
 	{
-		return p_fontManager.get(std::forward<Ts>(yuke)...);
+		return p_fontManagerPtr->get(std::forward<Ts>(yuke)...);
 	}
-
-private:
-	GameState p_currentState = GameState::NONE;
-	FontManager& p_fontManager;
-};
+}
