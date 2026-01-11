@@ -1,5 +1,5 @@
 #pragma once
-#include "app/GameContext.hpp"
+#include "contexts/GameContext.hpp"
 #include <SFML/Graphics.hpp>
 
 // abstract class for a screen

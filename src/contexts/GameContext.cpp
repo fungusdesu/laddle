@@ -1,4 +1,4 @@
-#include "app/GameContext.hpp"
+#include "contexts/GameContext.hpp"
 
 namespace GameContext
 {

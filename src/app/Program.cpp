@@ -1,7 +1,7 @@
 #include "app/Program.hpp"
 #include "app/solve.hpp"
-#include "app/GameContext.hpp"
 #include "app/globals.hpp"
+#include "contexts/GameContext.hpp"
 #include <iostream>
 #include <optional>
 #include <SFML/Graphics.hpp>

@@ -1,8 +1,8 @@
 #pragma once
 #include "helper/splitToInteger.hpp"
 #include "Types.hpp"
-#include "screen/BaseScreen.hpp"
-#include "screen/TestScreen.hpp"
+#include "screens/BaseScreen.hpp"
+#include "screens/TestScreen.hpp"
 #include <vector>
 #include <string>
 #include <unordered_set>

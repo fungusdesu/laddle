@@ -1,5 +1,5 @@
-#include "screen/TestScreen.hpp"
-#include "app/GameContext.hpp"
+#include "screens/TestScreen.hpp"
+#include "contexts/GameContext.hpp"
 #include <SFML/Graphics.hpp>
 
 void TestScreen::update()
