@@ -38,10 +38,13 @@ void Row::check(const std::string& target)
 
 std::string Row::getWord() const
 {
+	
 	std::string result = "STUPI";
 	for (int i = 0; i < WORD_LENGTH; i++)
 	{
-		result[i] = p_tiles[i].getLetter();
+		char letter = p_tiles[i].getLetter();
+		swag_assert(letter == '\x00');
+		result[i] = letter;
 	}
 	return result;
 }
