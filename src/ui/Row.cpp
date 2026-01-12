@@ -6,6 +6,17 @@ bool Row::isFull() const
 	return p_iterator >= WORD_LENGTH;
 }
 
+sf::Vector2f Row::getPosition() const
+{
+	return p_position;
+}
+
+void Row::setPosition(const float& x, const float& y)
+{
+	p_position.x = x;
+	p_position.y = y;
+}
+
 std::array<TileState, WORD_LENGTH> Row::getState() const
 {
 	std::array<TileState, WORD_LENGTH> states;
