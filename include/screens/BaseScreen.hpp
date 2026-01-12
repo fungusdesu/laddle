@@ -11,6 +11,7 @@ public:
 		p_window = &window;
 	}
 
+	virtual void handleInput(const sf::Event& event) = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
 

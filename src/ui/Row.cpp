@@ -1,6 +1,11 @@
 #include "ui/Row.hpp"
 #include "helper/swag_assert.hpp"
 
+bool Row::isFull() const
+{
+	return p_iterator >= WORD_LENGTH;
+}
+
 std::array<TileState, WORD_LENGTH> Row::getState() const
 {
 	std::array<TileState, WORD_LENGTH> states;
@@ -47,4 +52,22 @@ std::string Row::getWord() const
 		result[i] = letter;
 	}
 	return result;
+}
+
+void Row::appendLetter(const char& letter)
+{
+	swag_assert(letter >= 'a' && letter <= 'z');
+	swag_assert(p_iterator < WORD_LENGTH);
+
+	p_tiles[p_iterator].setLetter(letter);
+	p_iterator++;
+}
+
+void Row::reset()
+{
+	for (Tile& tile : p_tiles)
+	{
+		tile.reset();
+	}
+	p_iterator = 0;
 }

@@ -69,10 +69,10 @@ void Program::run()
 				while (const std::optional event = window.pollEvent())
 				{
 					if (event->is<sf::Event::Closed>()) window.close();
-					screenPtr->update();
-					screenPtr->draw();
+					screenPtr->handleInput(*event);
 				}
-
+				screenPtr->update();
+				screenPtr->draw();
 			}
 			break;
 		}

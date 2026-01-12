@@ -24,3 +24,9 @@ void Tile::setLetter(const char& newLetter)
 {
 	p_letter = newLetter;
 }
+
+void Tile::reset()
+{
+	clearLetter();
+	state = TileState::NONE;
+}

@@ -19,6 +19,7 @@ public:
 	char getLetter() const;
 	void clearLetter();
 	void setLetter(const char& newLetter);
+	void reset();
 
 private:
 	TileState state = TileState::NONE;
