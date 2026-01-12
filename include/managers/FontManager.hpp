@@ -5,7 +5,7 @@
 class FontManager
 {
 public:
-	FontManager() = default;
+	explicit FontManager() = default;
 	~FontManager() = default;
 	
 	void init();

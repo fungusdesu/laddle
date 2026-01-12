@@ -1,15 +1,17 @@
 #pragma once
+#include "contexts/GameContext.hpp"
 #include <SFML/Graphics.hpp>
 
 // abstract class for a screen
 class BaseScreen
 {
 public:
-	BaseScreen(sf::RenderWindow& window)
+	explicit BaseScreen(sf::RenderWindow& window)
 	{
 		p_window = &window;
 	}
 
+	virtual void handleInput(const sf::Event& event) = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
 
