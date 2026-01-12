@@ -6,7 +6,7 @@ constexpr int WORD_LENGTH = 5;
 class Row
 {
 public:
-	Row() = default;
+	explicit Row() = default;
 
 	std::array<TileState, WORD_LENGTH> getState() const;
 	void check(const std::string& target);

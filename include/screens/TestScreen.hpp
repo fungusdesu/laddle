@@ -4,7 +4,7 @@
 class TestScreen : public BaseScreen
 {
 public:
-	TestScreen(sf::RenderWindow& window) : BaseScreen(window) {}
+	explicit TestScreen(sf::RenderWindow& window) : BaseScreen(window) {}
 
 	void update() override;
 	void draw() override;

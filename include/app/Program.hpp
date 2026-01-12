@@ -32,7 +32,7 @@ class Program
 public:
 	void run();
 
-	Program(ProgramFlags flags);
+	explicit Program(ProgramFlags flags);
 	Program(const Program& other) = delete;
 	Program& operator=(const Program& other) = delete;
 	Program(Program&& other) = delete;

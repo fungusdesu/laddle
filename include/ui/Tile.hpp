@@ -12,7 +12,7 @@ enum class TileState
 class Tile
 {
 public:
-	Tile() = default;
+	explicit Tile() = default;
 
 	TileState getState() const;
 	void setState(const TileState& newState);

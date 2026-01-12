@@ -6,7 +6,7 @@
 class BaseScreen
 {
 public:
-	BaseScreen(sf::RenderWindow& window)
+	explicit BaseScreen(sf::RenderWindow& window)
 	{
 		p_window = &window;
 	}
