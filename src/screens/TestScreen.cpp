@@ -6,9 +6,18 @@
 
 void TestScreen::handleInput(const sf::Event& event)
 {
-	if (event.is<sf::Event::TextEntered>())
+	if (event.is<sf::Event::KeyPressed>())
 	{
-		char letter = event.getIf<sf::Event::TextEntered>()->unicode;
+		auto scancode = event.getIf<sf::Event::KeyPressed>()->scancode;
+		if (scancode == sf::Keyboard::Scan::Backspace)
+		{
+			std::cout << "backspace\n";
+			p_row.popLetter();
+		}
+	}
+	else if (event.is<sf::Event::TextEntered>())
+	{
+		auto letter = event.getIf<sf::Event::TextEntered>()->unicode;
 		if (letter >= 'a' && letter <= 'z')
 		{
 			if (p_row.isFull())
@@ -16,7 +25,7 @@ void TestScreen::handleInput(const sf::Event& event)
 				p_row.reset();
 				std::cout << "RESET\n";
 			}
-			else p_row.appendLetter(letter);
+			else p_row.pushLetter(letter);
 		}
 	}
 }
@@ -33,24 +42,6 @@ void TestScreen::draw()
 
 	p_window->clear();
 	p_window->draw(allOKText);
-	
-	sf::Vector2f currentTilePosition = p_row.getPosition();
-	for (int i = 0; i < WORD_LENGTH; i++)
-	{
-		sf::RectangleShape tileRect({80.0f, 80.f});
-		tileRect.setPosition(currentTilePosition);
-
-		char tileLetter = p_row.getTileAtIndex(i).getLetter();
-		sf::Text tileLetterText(font, tileLetter, 80);
-		tileLetterText.setFillColor(sf::Color::Black);
-		centerTextInRect(tileLetterText, tileRect);
-
-		p_window->draw(tileRect);
-		p_window->draw(tileLetterText);
-
-		currentTilePosition.x += 90;
-	}
-	std::cout << '\n';
-
+	p_window->draw(p_row);
 	p_window->display();
 }

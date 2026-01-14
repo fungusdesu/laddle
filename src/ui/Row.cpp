@@ -1,5 +1,7 @@
 #include "ui/Row.hpp"
+#include "contexts/GameContext.hpp"
 #include "helper/swag_assert.hpp"
+#include "helper/centerTextInRect.hpp"
 
 bool Row::isFull() const
 {
@@ -17,7 +19,7 @@ void Row::setPosition(const float& x, const float& y)
 	p_position.y = y;
 }
 
-Tile Row::getTileAtIndex(const int& i)
+Tile Row::getTileAtIndex(const int& i) const
 {
 	swag_assert(i >= 0 && i < WORD_LENGTH);
 	return p_tiles[i];
@@ -71,13 +73,21 @@ std::string Row::getWord() const
 	return result;
 }
 
-void Row::appendLetter(const char& letter)
+void Row::pushLetter(const char& letter)
 {
 	swag_assert(letter >= 'a' && letter <= 'z');
 	swag_assert(p_iterator < WORD_LENGTH);
 
 	p_tiles[p_iterator].setLetter(letter);
 	p_iterator++;
+}
+
+char Row::popLetter()
+{
+	if (p_iterator > 0) p_iterator--;
+	auto popped = getTileAtIndex(p_iterator).getLetter();
+	p_tiles[p_iterator].clearLetter();
+	return popped;
 }
 
 void Row::reset()
@@ -87,4 +97,25 @@ void Row::reset()
 		tile.reset();
 	}
 	p_iterator = 0;
+}
+
+void Row::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	sf::Vector2f currentTilePosition = getPosition();
+	const sf::Font& font = GameContext::getFont("VCR_OSD_MONO");
+	for (int i = 0; i < WORD_LENGTH; i++)
+	{
+		sf::RectangleShape tileRect({80.0f, 80.f});
+		tileRect.setPosition(currentTilePosition);
+
+		auto tileLetter = getTileAtIndex(i).getLetter();
+		sf::Text tileLetterText(font, tileLetter, 80);
+		tileLetterText.setFillColor(sf::Color::Black);
+		centerTextInRect(tileLetterText, tileRect);
+
+		target.draw(tileRect);
+		target.draw(tileLetterText);
+
+		currentTilePosition.x += 90;
+	}
 }
