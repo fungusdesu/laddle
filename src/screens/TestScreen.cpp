@@ -11,8 +11,20 @@ void TestScreen::handleInput(const sf::Event& event)
 		auto scancode = event.getIf<sf::Event::KeyPressed>()->scancode;
 		if (scancode == sf::Keyboard::Scan::Backspace)
 		{
-			std::cout << "backspace\n";
 			p_row.popLetter();
+		}
+		else if (scancode == sf::Keyboard::Scan::Enter)
+		{
+			if (p_row.isFull()) 
+			{
+				std::cout << p_row.getWord() << '\n';
+				p_row.reset();
+			}
+			else
+			{
+				std::cout << "shake" << '\n';
+				p_row.shake();
+			}
 		}
 	}
 	else if (event.is<sf::Event::TextEntered>())
@@ -20,19 +32,17 @@ void TestScreen::handleInput(const sf::Event& event)
 		auto letter = event.getIf<sf::Event::TextEntered>()->unicode;
 		if (letter >= 'a' && letter <= 'z')
 		{
-			if (p_row.isFull())
+			if (!p_row.isFull())
 			{
-				p_row.reset();
-				std::cout << "RESET\n";
+				p_row.pushLetter(letter);
 			}
-			else p_row.pushLetter(letter);
 		}
 	}
 }
 
 void TestScreen::update()
 {
-
+	p_row.update();
 }
 
 void TestScreen::draw()
