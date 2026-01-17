@@ -1,7 +1,11 @@
 #include "app/Program.hpp"
 #include "app/solve.hpp"
 #include "app/globals.hpp"
+
 #include "contexts/GameContext.hpp"
+
+#include "screens/MainMenuScreen.hpp"
+
 #include <iostream>
 #include <optional>
 #include <SFML/Graphics.hpp>
@@ -60,7 +64,7 @@ void Program::run()
 		case Mode::GAME:
 		{
 			sf::RenderWindow window(sf::VideoMode({1200, 800}), "poop");
-			screenPtr = std::make_unique<TestScreen>(window);
+			screenPtr = std::make_unique<MainMenuScreen>(window);
 
 			GameContext::init();
 

@@ -3,6 +3,7 @@
 
 class MainMenuScreen : public BaseScreen
 {
+public:
 	explicit MainMenuScreen(sf::RenderWindow& window) : BaseScreen(window) {}
 
 	void handleInput(const sf::Event& event) override;
