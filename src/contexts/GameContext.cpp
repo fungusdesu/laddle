@@ -2,12 +2,12 @@
 
 namespace GameContext
 {
-	GameState p_currentState = GameState::NONE;
-	std::unique_ptr<FontManager> p_fontManagerPtr;
+	GameState currentState = GameState::MAIN_MENU;
+	std::unique_ptr<FontManager> fontManagerPtr;
 
 	void init()
 	{
-		p_fontManagerPtr = std::make_unique<FontManager>();
-		p_fontManagerPtr->init();
+		fontManagerPtr = std::make_unique<FontManager>();
+		fontManagerPtr->init();
 	}
 }
