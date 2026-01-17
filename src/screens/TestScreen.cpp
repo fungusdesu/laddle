@@ -14,18 +14,26 @@ void TestScreen::handleInput(const sf::Event& event)
 			std::cout << "backspace\n";
 			p_row.popLetter();
 		}
+		else if (scancode == sf::Keyboard::Scan::Enter)
+		{
+			std::cout << "enter\n";
+			if (p_row.isFull()) 
+			{
+				std::cout << p_row.getWord() << '\n';
+				p_row.reset();
+			}
+			else;
+		}
 	}
 	else if (event.is<sf::Event::TextEntered>())
 	{
 		auto letter = event.getIf<sf::Event::TextEntered>()->unicode;
 		if (letter >= 'a' && letter <= 'z')
 		{
-			if (p_row.isFull())
+			if (!p_row.isFull())
 			{
-				p_row.reset();
-				std::cout << "RESET\n";
+				p_row.pushLetter(letter);
 			}
-			else p_row.pushLetter(letter);
 		}
 	}
 }
