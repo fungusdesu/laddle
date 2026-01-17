@@ -5,10 +5,14 @@
 #include "helper/centerTextInRect.hpp"
 
 constexpr auto LADDLE_TEXT_Y_POSITION = 100.0f;
+constexpr auto PLAY_TEXT_Y_POSITION = 300.0f;
+constexpr auto ABOUT_TEXT_Y_POSITION = 380.0f;
+constexpr auto SETTINGS_TEXT_Y_POSITION = 460.0f;
+constexpr auto CREDITS_TEXT_Y_POSITION = 540.0f;
 
 void MainMenuScreen::handleInput(const sf::Event& event)
 {
-	
+
 }
 
 void MainMenuScreen::update()
@@ -28,10 +32,32 @@ void MainMenuScreen::draw()
 		laddleText.setPosition({p_window->getSize().x / 2.0f, LADDLE_TEXT_Y_POSITION});
 	}
 	
-	sf::Text playText(font, "PLAY");
+	sf::Text playText(font, "PLAY", 60);
+	sf::Text aboutText(font, "ABOUT", 60);
+	sf::Text settingsText(font, "SETTINGS", 60);
+	sf::Text creditsText(font, "CREDITS", 60);
+	{
+		playText.setPosition({p_window->getSize().x / 4.0f, PLAY_TEXT_Y_POSITION});
+		aboutText.setPosition({p_window->getSize().x / 4.0f, ABOUT_TEXT_Y_POSITION});
+		settingsText.setPosition({p_window->getSize().x / 4.0f, SETTINGS_TEXT_Y_POSITION});
+		creditsText.setPosition({p_window->getSize().x / 4.0f, CREDITS_TEXT_Y_POSITION});
+	}
 
+	sf::Text selectorText(font, ">", 60);
+	{
+		auto selectorYPosition = p_selector * 80.0f + 300.0f;
+		auto lbounds = selectorText.getLocalBounds();
+		selectorText.setPosition({p_window->getSize().x / 4.0f - 2 * lbounds.size.x, selectorYPosition});
+	}
 
 	p_window->clear();
+
 	p_window->draw(laddleText);
+	p_window->draw(playText);
+	p_window->draw(aboutText);
+	p_window->draw(settingsText);
+	p_window->draw(selectorText);
+	p_window->draw(creditsText);
+
 	p_window->display();
 }
