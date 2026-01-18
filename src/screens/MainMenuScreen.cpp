@@ -4,6 +4,8 @@
 
 #include "helper/centerTextInRect.hpp"
 
+#include "managers/ScreenManager.hpp"
+
 constexpr auto LADDLE_TEXT_Y_POSITION = 100.0f;
 constexpr auto PLAY_TEXT_Y_POSITION = 300.0f;
 constexpr auto ABOUT_TEXT_Y_POSITION = 380.0f;
@@ -23,6 +25,10 @@ void MainMenuScreen::handleInput(const sf::Event& event)
 		else if (scancode == sf::Keyboard::Scan::Down || scancode == sf::Keyboard::Scan::S)
 		{
 			p_selector = (p_selector + 1) % MAIN_MENU_MAX_OPTIONS;
+		}
+		else if (scancode == sf::Keyboard::Scan::Enter)
+		{
+			ScreenManager::advance(p_nextState[p_selector]);
 		}
 	}
 }

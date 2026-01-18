@@ -2,6 +2,9 @@
 
 #include "helper/swag_assert.hpp"
 
+std::stack<GameState> ScreenManager::p_stateStack;
+std::stack<std::unique_ptr<BaseScreen>> ScreenManager::p_screenStack;
+
 void ScreenManager::init()
 {
 	p_stateStack.push(GameState::MAIN_MENU);

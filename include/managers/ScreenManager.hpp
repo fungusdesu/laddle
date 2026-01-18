@@ -15,8 +15,8 @@ public:
 
 	void init();
 
-	void advance(GameState nextState);
-	void retreat();
+	static void advance(GameState nextState);
+	static void retreat();
 
 	void handleInputCurrentScreen(const sf::Event& event);
 	void updateCurrentScreen();
@@ -27,6 +27,6 @@ public:
 	bool shouldExit() const;
 
 private:
-	std::stack<GameState> p_stateStack;
-	std::stack<std::unique_ptr<BaseScreen>> p_screenStack;
+	static std::stack<GameState> p_stateStack;
+	static std::stack<std::unique_ptr<BaseScreen>> p_screenStack;
 };
