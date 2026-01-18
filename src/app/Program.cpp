@@ -63,21 +63,23 @@ void Program::run()
 		case Mode::GAME:
 		{
 			sf::RenderWindow window(sf::VideoMode({1200, 800}), "poop");
-			screenPtr = std::make_unique<MainMenuScreen>();
 
 			GameContext::init();
+
+			p_screenManager = std::make_unique<ScreenManager>();
+			p_screenManager->init();
 
 			while (window.isOpen())
 			{
 				while (const std::optional event = window.pollEvent())
 				{
-					if (event->is<sf::Event::Closed>() || GameContext::currentState == GameState::NONE) window.close();
-					screenPtr->handleInput(*event);
+					if (event->is<sf::Event::Closed>() || p_screenManager->shouldExit()) window.close();
+					p_screenManager->handleInputCurrentScreen(*event);
 				}
-				screenPtr->update();
+				p_screenManager->updateCurrentScreen();
 				
 				window.clear();
-				screenPtr->draw(window);
+				p_screenManager->drawCurrentScreen(window);
 				window.display();
 			}
 			break;

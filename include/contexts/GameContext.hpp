@@ -16,7 +16,6 @@ enum class GameState
 namespace GameContext
 {
 	extern std::unique_ptr<FontManager> fontManagerPtr;
-	extern GameState currentState;
 	void init();
 
 	template <typename ...Ts>
