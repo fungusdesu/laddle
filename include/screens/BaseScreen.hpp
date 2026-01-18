@@ -6,17 +6,11 @@
 class BaseScreen
 {
 public:
-	explicit BaseScreen(sf::RenderWindow& window)
-	{
-		p_window = &window;
-	}
+	explicit BaseScreen() = default;
 
 	virtual void handleInput(const sf::Event& event) = 0;
 	virtual void update() = 0;
-	virtual void draw() = 0;
+	virtual void draw(sf::RenderTarget& window) = 0;
 
 	virtual ~BaseScreen() = default;
-
-protected:
-	sf::RenderWindow* p_window;
 };

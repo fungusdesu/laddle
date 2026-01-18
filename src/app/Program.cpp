@@ -45,7 +45,7 @@ void Program::run()
 		case Mode::NONE:
 		case Mode::HELP:
 		{
-			std::cout << "\t-h\t-\tShow list of options\n\t-s\t-\tSolve word ladder\n";
+			std::cout << "\t-h\t-\tShow list of options\n\t-s\t-\tSolve word ladder\n\t-g\t-\tStart Laddle\n";
 			break;
 		}
 
@@ -63,7 +63,7 @@ void Program::run()
 		case Mode::GAME:
 		{
 			sf::RenderWindow window(sf::VideoMode({1200, 800}), "poop");
-			screenPtr = std::make_unique<MainMenuScreen>(window);
+			screenPtr = std::make_unique<MainMenuScreen>();
 
 			GameContext::init();
 
@@ -75,7 +75,10 @@ void Program::run()
 					screenPtr->handleInput(*event);
 				}
 				screenPtr->update();
-				screenPtr->draw();
+				
+				window.clear();
+				screenPtr->draw(window);
+				window.display();
 			}
 			break;
 		}

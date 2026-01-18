@@ -32,7 +32,7 @@ void MainMenuScreen::update()
 
 }
 
-void MainMenuScreen::draw()
+void MainMenuScreen::draw(sf::RenderTarget& window)
 {
 	const sf::Font& font = GameContext::getFont("VCR_OSD_MONO");
 
@@ -41,7 +41,7 @@ void MainMenuScreen::draw()
 		laddleText.setLetterSpacing(2.0f);
 		auto lbounds = laddleText.getLocalBounds();
 		laddleText.setOrigin(lbounds.position + lbounds.size / 2.0f);
-		laddleText.setPosition({p_window->getSize().x / 2.0f, LADDLE_TEXT_Y_POSITION});
+		laddleText.setPosition({window.getSize().x / 2.0f, LADDLE_TEXT_Y_POSITION});
 	}
 	
 	sf::Text playText(font, "PLAY", 60);
@@ -50,29 +50,25 @@ void MainMenuScreen::draw()
 	sf::Text exitText(font, "EXIT", 60);
 	sf::Text testText(font, "TEST", 60);
 	{
-		playText.setPosition({p_window->getSize().x / 4.0f, PLAY_TEXT_Y_POSITION});
-		aboutText.setPosition({p_window->getSize().x / 4.0f, ABOUT_TEXT_Y_POSITION});
-		settingsText.setPosition({p_window->getSize().x / 4.0f, SETTINGS_TEXT_Y_POSITION});
-		exitText.setPosition({p_window->getSize().x / 4.0f, EXIT_TEXT_Y_POSITION});
-		testText.setPosition({p_window->getSize().x / 4.0f, TEST_TEXT_Y_POSITION});
+		playText.setPosition({window.getSize().x / 4.0f, PLAY_TEXT_Y_POSITION});
+		aboutText.setPosition({window.getSize().x / 4.0f, ABOUT_TEXT_Y_POSITION});
+		settingsText.setPosition({window.getSize().x / 4.0f, SETTINGS_TEXT_Y_POSITION});
+		exitText.setPosition({window.getSize().x / 4.0f, EXIT_TEXT_Y_POSITION});
+		testText.setPosition({window.getSize().x / 4.0f, TEST_TEXT_Y_POSITION});
 	}
 
 	sf::Text selectorText(font, ">", 60);
 	{
 		auto selectorYPosition = p_selector * 80.0f + 300.0f;
 		auto lbounds = selectorText.getLocalBounds();
-		selectorText.setPosition({p_window->getSize().x / 4.0f - 2 * lbounds.size.x, selectorYPosition});
+		selectorText.setPosition({window.getSize().x / 4.0f - 2 * lbounds.size.x, selectorYPosition});
 	}
 
-	p_window->clear();
-
-	p_window->draw(laddleText);
-	p_window->draw(playText);
-	p_window->draw(aboutText);
-	p_window->draw(settingsText);
-	p_window->draw(exitText);
-	p_window->draw(testText);
-	p_window->draw(selectorText);
-	
-	p_window->display();
+	window.draw(laddleText);
+	window.draw(playText);
+	window.draw(aboutText);
+	window.draw(settingsText);
+	window.draw(exitText);
+	window.draw(testText);
+	window.draw(selectorText);
 }

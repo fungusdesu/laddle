@@ -45,13 +45,11 @@ void TestScreen::update()
 	p_row.update();
 }
 
-void TestScreen::draw()
+void TestScreen::draw(sf::RenderTarget& window)
 {
 	const sf::Font& font = GameContext::getFont("VCR_OSD_MONO");
 	sf::Text allOKText(font, "SFML all OK!", 50);
 
-	p_window->clear();
-	p_window->draw(allOKText);
-	p_window->draw(p_row);
-	p_window->display();
+	window.draw(allOKText);
+	window.draw(p_row);
 }
