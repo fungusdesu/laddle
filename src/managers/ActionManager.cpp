@@ -22,7 +22,7 @@ void ActionManager::checkActions(const sf::Event& event)
 	) ? true : false;
 }
 
-bool ActionManager::hasAction(GameAction action)
+bool ActionManager::hasAction(const GameAction& action) const
 {
 	return p_actionStates[action];
 }

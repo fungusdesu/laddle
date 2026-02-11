@@ -16,7 +16,7 @@ class ActionManager
 {
 public:
 	void checkActions(const sf::Event& event);
-	bool hasAction(GameAction action);
+	bool hasAction(const GameAction& action) const;
 	void clearActions();
 
 private:
