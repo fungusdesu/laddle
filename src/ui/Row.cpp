@@ -1,6 +1,10 @@
 #include <cmath>
+#include <iostream>
+
 #include "ui/Row.hpp"
+
 #include "managers/ResourceManager.hpp"
+
 #include "helper/swag_assert.hpp"
 #include "helper/centerTextInRect.hpp"
 
@@ -66,15 +70,16 @@ std::array<TileState, WORD_LENGTH> Row::getState() const
 
 void Row::check(const std::string& target)
 {
-	int freq[26] = {0};
+	std::array<int, 26> freq;
+	freq.fill(0);
 
 	for (int i = 0; i < WORD_LENGTH; i++)
 	{
-		Tile tile = p_tiles[i];
+		Tile& tile = p_tiles[i];
 		const char targetLetter = target[i];
 
 		if (tile.getLetter() == targetLetter) tile.setState(TileState::CORRECT);
-		else freq[tile.getLetter() - 'a']++;
+		else freq[targetLetter - 'a']++;
 	}
 
 	for (Tile& tile : p_tiles)
@@ -151,6 +156,18 @@ void Row::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		sf::RectangleShape tileRect({80.0f, 80.f});
 		tileRect.setPosition(currentTilePosition);
+		if (getTileAtIndex(i).getState() == TileState::MISPLACED)
+		{
+			tileRect.setFillColor(sf::Color(255, 252, 114));
+		}
+		else if (getTileAtIndex(i).getState() == TileState::CORRECT)
+		{
+			tileRect.setFillColor(sf::Color(127, 163, 92));
+		}
+		else
+		{
+			tileRect.setFillColor(sf::Color(255, 255, 255));
+		}
 
 		auto tileLetter = getTileAtIndex(i).getLetter();
 		sf::Text tileLetterText(font, tileLetter, 80);

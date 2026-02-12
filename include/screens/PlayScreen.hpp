@@ -12,6 +12,7 @@ public:
 	{
 		Row initialRow;
 		initialRow.setPosition(300.0f, 300.0f);
+		p_rowStack.push_back(initialRow);
 		// TO-DO: IMPLEMENT RANDOM ANSWER WORDS
 		p_answer = "maker";
 	}
@@ -23,7 +24,7 @@ public:
 	~PlayScreen() = default;
 
 private:
-	std::stack<Row> p_rowStack;
+	std::vector<Row> p_rowStack;
 	std::string p_answer;
 	bool p_ignoreFirstFrame = true;
 };

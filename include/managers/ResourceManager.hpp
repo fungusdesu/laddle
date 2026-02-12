@@ -8,6 +8,7 @@ enum class GameState
 {
 	NONE,
 	MAIN_MENU,
+	PLAY,
 	ABOUT,
 	OPTIONS,
 	TEST,

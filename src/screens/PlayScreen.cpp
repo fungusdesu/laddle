@@ -24,28 +24,29 @@ bool PlayScreen::handleInput(const sf::Event& event)
 	}
 	else if (ResourceManager::hasAction(GameAction::TEST_BACKSPACE))
 	{
-		if (p_rowStack.top().isEmpty())
+		if (p_rowStack.back().isEmpty() && p_rowStack.size() != 1)
 		{
-			p_rowStack.pop();
+			p_rowStack.pop_back();
 		}
 		else
 		{
-			p_rowStack.top().popLetter();
+			p_rowStack.back().popLetter();
 		}
 		captured = true;
 	}
 	else if (ResourceManager::hasAction(GameAction::TEST_ENTER))
 	{
-		if (p_rowStack.top().isFull()) 
+		if (p_rowStack.back().isFull()) 
 		{
-			p_rowStack.top().check(p_answer);
+			p_rowStack.back().check(p_answer);
 
 			Row newRow;
-			p_rowStack.push(newRow);
+			newRow.setPosition(p_rowStack.back().getPosition().x, p_rowStack.back().getPosition().y + 90);
+			p_rowStack.push_back(newRow);
 		}
 		else
 		{
-			p_rowStack.top().shake();
+			p_rowStack.back().shake();
 		}
 		captured = true;
 	}
@@ -56,9 +57,9 @@ bool PlayScreen::handleInput(const sf::Event& event)
 		auto letter = event.getIf<sf::Event::TextEntered>()->unicode;
 		if (letter >= 'a' && letter <= 'z')
 		{
-			if (!p_rowStack.top().isFull())
+			if (!p_rowStack.back().isFull())
 			{
-				p_rowStack.top().pushLetter(letter);
+				p_rowStack.back().pushLetter(letter);
 			}
 		}
 		captured = true;
@@ -71,10 +72,13 @@ bool PlayScreen::handleInput(const sf::Event& event)
 
 void PlayScreen::update()
 {
-	p_rowStack.top().update();
+	p_rowStack.back().update();
 }
 
 void PlayScreen::draw(sf::RenderTarget& window)
 {
-	window.draw(p_rowStack.top());
+	for (const Row& row : p_rowStack)
+	{
+		window.draw(row);
+	}
 }
