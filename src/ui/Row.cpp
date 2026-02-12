@@ -42,6 +42,11 @@ void Row::setPosition(const float& x, const float& y)
 	p_position.y = y;
 }
 
+void Row::setPosition(const sf::Vector2f& vecf)
+{
+	p_position = vecf;
+}
+
 Tile Row::getTileAtIndex(const int& i) const
 {
 	swag_assert(i >= 0 && i < WORD_LENGTH);
