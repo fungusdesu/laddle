@@ -1,11 +1,38 @@
 #include <iostream>
+#include <fstream>
 
 #include "screens/PlayScreen.hpp"
 
 #include "managers/ResourceManager.hpp"
 #include "managers/ScreenManager.hpp"
 
+#include "helper/splitToInteger.hpp"
 #include "helper/centerTextInRect.hpp"
+
+PlayScreen::PlayScreen() : BaseScreen()
+{
+	Row initialRow;
+	initialRow.setPosition(300.0f, 300.0f);
+	p_rowStack.push_back(initialRow);
+
+	std::ifstream fin("assets/lexicon/words.txt");
+	std::string input;
+	while (getline(fin, input))
+	{
+		p_lexicon.insert(input);
+	}
+	fin.close();
+	fin.open("assets/lexicon/adj_list.txt");
+	for (int i = 0; getline(fin, input); i++)
+	{
+		Neighbor neighbors = splitToInteger(input, ' ');
+		AdjacencyListEntry entry = AdjacencyListEntry(i, neighbors);
+		p_adjList.push_back(entry);
+	}
+
+	// TO-DO: IMPLEMENT RANDOM ANSWER WORDS
+	p_answer = "maker";
+}
 
 bool PlayScreen::handleInput(const sf::Event& event)
 {

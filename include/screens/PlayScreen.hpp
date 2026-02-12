@@ -5,17 +5,12 @@
 
 #include "ui/Row.hpp"
 
+#include "Types.hpp"
+
 class PlayScreen : public BaseScreen
 {
 public:
-	explicit PlayScreen() : BaseScreen()
-	{
-		Row initialRow;
-		initialRow.setPosition(300.0f, 300.0f);
-		p_rowStack.push_back(initialRow);
-		// TO-DO: IMPLEMENT RANDOM ANSWER WORDS
-		p_answer = "maker";
-	}
+	explicit PlayScreen();
 
 	bool handleInput(const sf::Event& event) override;
 	void update() override;
@@ -26,5 +21,9 @@ public:
 private:
 	std::vector<Row> p_rowStack;
 	std::string p_answer;
+
+	std::unordered_set<std::string> p_lexicon;
+	std::vector<AdjacencyListEntry> p_adjList;
+
 	bool p_ignoreFirstFrame = true;
 };
