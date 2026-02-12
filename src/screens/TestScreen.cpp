@@ -9,6 +9,11 @@
 
 bool TestScreen::handleInput(const sf::Event& event)
 {
+	if (p_ignoreFirstFrame)
+	{
+		p_ignoreFirstFrame = false;
+		return false;
+	}
 	bool captured = false;
 	ResourceManager::checkActions(event);
 

@@ -17,4 +17,5 @@ public:
 
 private:
 	Row p_row;
+	bool p_ignoreFirstFrame = true;
 };
