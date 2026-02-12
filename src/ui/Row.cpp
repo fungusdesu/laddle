@@ -132,6 +132,14 @@ void Row::reset()
 	p_iterator = 0;
 }
 
+void Row::resetState()
+{
+	for (Tile& tile : p_tiles)
+	{
+		tile.setState(TileState::NONE);
+	}
+}
+
 void Row::shake()
 {
 	shakeClock.toggle = true;

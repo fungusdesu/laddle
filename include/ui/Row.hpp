@@ -30,6 +30,7 @@ public:
 	void pushLetter(const char& letter);
 	char popLetter();
 	void reset();
+	void resetState();
 
 	void shake();
 

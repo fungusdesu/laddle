@@ -8,11 +8,12 @@
 
 #include "helper/splitToInteger.hpp"
 #include "helper/centerTextInRect.hpp"
+#include "helper/undsetPseudorandom.hpp"
 
 PlayScreen::PlayScreen() : BaseScreen()
 {
 	Row initialRow;
-	initialRow.setPosition(300.0f, 300.0f);
+	initialRow.setPosition(100.0f, 100.0f);
 	p_rowStack.push_back(initialRow);
 
 	std::ifstream fin("assets/lexicon/words.txt");
@@ -31,7 +32,7 @@ PlayScreen::PlayScreen() : BaseScreen()
 	}
 
 	// TO-DO: IMPLEMENT RANDOM ANSWER WORDS
-	p_answer = "maker";
+	p_answer = undsetPseudorandom(p_lexicon);
 }
 
 bool PlayScreen::handleInput(const sf::Event& event)
@@ -54,6 +55,7 @@ bool PlayScreen::handleInput(const sf::Event& event)
 		if (p_rowStack.back().isEmpty() && p_rowStack.size() != 1)
 		{
 			p_rowStack.pop_back();
+			p_rowStack.back().resetState();
 		}
 		else
 		{
