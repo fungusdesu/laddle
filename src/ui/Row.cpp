@@ -143,7 +143,7 @@ void Row::resetState()
 void Row::shake()
 {
 	shakeClock.toggle = true;
-	shakeClock.clock.start();
+	shakeClock.clock.restart();
 }
 
 void Row::update()

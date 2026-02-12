@@ -29,6 +29,7 @@ bool PlayScreen::handleInput(const sf::Event& event)
 		p_ignoreFirstFrame = false;
 		return false;
 	}
+	Row& rowStackTop = p_rowStack.back();
 	bool captured = false;
 	ResourceManager::checkActions(event);
 
@@ -39,32 +40,44 @@ bool PlayScreen::handleInput(const sf::Event& event)
 	}
 	else if (ResourceManager::hasAction(GameAction::TEST_BACKSPACE))
 	{
-		if (p_rowStack.back().isEmpty() && p_rowStack.size() != 1)
+		if (rowStackTop.isEmpty() && p_rowStack.size() != 1)
 		{
 			p_rowStack.pop_back();
+			// do not use rowStackTop here, the stack was popped
 			p_rowStack.back().resetState();
 		}
 		else
 		{
-			p_rowStack.back().popLetter();
+			rowStackTop.popLetter();
 		}
 		captured = true;
 	}
 	else if (ResourceManager::hasAction(GameAction::TEST_ENTER))
 	{
-		
-		if (p_rowStack.back().isFull() && binarySearch(ResourceManager::lexicon.cbegin(), ResourceManager::lexicon.cend(), p_rowStack.back().getWord())) 
+		if (!rowStackTop.isFull())
 		{
-			auto path = solve(ResourceManager::adjList, ResourceManager::lexicon, p_rowStack.back().getWord(), p_answer);
-			p_rowStack.back().check(p_answer);
-
-			Row newRow;
-			newRow.setPosition(p_rowStack.back().getPosition().x, p_rowStack.back().getPosition().y + 90);
-			p_rowStack.push_back(newRow);
+			rowStackTop.shake();
+			p_message = "kid that ain't a 5 letter word";
+		}
+		else if (!binarySearch(ResourceManager::lexicon.cbegin(), ResourceManager::lexicon.cend(), rowStackTop.getWord()))
+		{
+			rowStackTop.shake();
+			p_message = "nigga are u illiterate that ain't an english word";
+		}
+		else if (solve(ResourceManager::adjList, ResourceManager::lexicon, rowStackTop.getWord(), p_answer).empty())
+		{
+			rowStackTop.shake();
+			p_message = "you are COOKED if you continue with this word";
 		}
 		else
 		{
-			p_rowStack.back().shake();
+			rowStackTop.check(p_answer);
+
+			Row newRow;
+			newRow.setPosition(rowStackTop.getPosition().x, rowStackTop.getPosition().y + 90);
+			p_rowStack.push_back(newRow);
+
+			p_message = "Go on...";
 		}
 		captured = true;
 	}
@@ -75,9 +88,9 @@ bool PlayScreen::handleInput(const sf::Event& event)
 		auto letter = event.getIf<sf::Event::TextEntered>()->unicode;
 		if (letter >= 'a' && letter <= 'z')
 		{
-			if (!p_rowStack.back().isFull())
+			if (!rowStackTop.isFull())
 			{
-				p_rowStack.back().pushLetter(letter);
+				rowStackTop.pushLetter(letter);
 			}
 		}
 		captured = true;
@@ -95,8 +108,12 @@ void PlayScreen::update()
 
 void PlayScreen::draw(sf::RenderTarget& window)
 {
+	const sf::Font& font = ResourceManager::getFont("VCR_OSD_MONO");
+	sf::Text messageText(font, p_message, 50);
+
 	for (const Row& row : p_rowStack)
 	{
 		window.draw(row);
 	}
+	window.draw(messageText);
 }

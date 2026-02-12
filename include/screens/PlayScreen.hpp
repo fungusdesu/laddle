@@ -21,6 +21,7 @@ public:
 private:
 	std::vector<Row> p_rowStack;
 	std::string p_answer;
+	std::string p_message = "Go on...";
 
 	bool p_ignoreFirstFrame = true;
 };
