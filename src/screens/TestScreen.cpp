@@ -3,34 +3,41 @@
 #include "screens/TestScreen.hpp"
 
 #include "managers/ResourceManager.hpp"
+#include "managers/ScreenManager.hpp"
 
 #include "helper/centerTextInRect.hpp"
 
 bool TestScreen::handleInput(const sf::Event& event)
 {
-	if (event.is<sf::Event::KeyPressed>())
+	bool captured = false;
+	ResourceManager::checkActions(event);
+
+	if (ResourceManager::hasAction(GameAction::TEST_EXIT))
 	{
-		auto scancode = event.getIf<sf::Event::KeyPressed>()->scancode;
-		if (scancode == sf::Keyboard::Scan::Backspace)
+		ScreenManager::retreat();
+		captured = true;
+	}
+	else if (ResourceManager::hasAction(GameAction::TEST_BACKSPACE))
+	{
+		p_row.popLetter();
+		captured = true;
+	}
+	else if (ResourceManager::hasAction(GameAction::TEST_ENTER))
+	{
+		if (p_row.isFull()) 
 		{
-			p_row.popLetter();
+			std::cout << p_row.getWord() << '\n';
+			p_row.reset();
 		}
-		else if (scancode == sf::Keyboard::Scan::Enter)
+		else
 		{
-			if (p_row.isFull()) 
-			{
-				std::cout << p_row.getWord() << '\n';
-				p_row.reset();
-			}
-			else
-			{
-				std::cout << "shake" << '\n';
-				p_row.shake();
-			}
+			std::cout << "shake" << '\n';
+			p_row.shake();
 		}
-		return true;
+		captured = true;
 	}
 
+	
 	if (event.is<sf::Event::TextEntered>())
 	{
 		auto letter = event.getIf<sf::Event::TextEntered>()->unicode;
@@ -41,11 +48,12 @@ bool TestScreen::handleInput(const sf::Event& event)
 				p_row.pushLetter(letter);
 			}
 		}
-
-		return true;
+		captured = true;
 	}
+	
+	ResourceManager::clearActions();
 
-	return false;
+	return captured;
 }
 
 void TestScreen::update()
