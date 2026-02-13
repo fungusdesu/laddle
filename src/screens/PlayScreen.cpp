@@ -20,10 +20,10 @@ PlayScreen::PlayScreen() : BaseScreen()
 	Row initialRow;
 	p_rowStack.push_back(initialRow);
 
-	p_answer = vecrand(ResourceManager::lexicon);
+	p_answer = vecrand(ResourceManager::concordance);
 	do
 	{
-		p_source = vecrand(ResourceManager::lexicon);
+		p_source = vecrand(ResourceManager::concordance);
 	}
 	while (solve(ResourceManager::adjList, ResourceManager::lexicon, p_source, p_answer).empty());
 

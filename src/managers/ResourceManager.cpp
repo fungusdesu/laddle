@@ -10,15 +10,22 @@ namespace ResourceManager
 	std::unique_ptr<FontManager> fontManagerPtr;
 	std::unique_ptr<ActionManager> actionManagerPtr;
 	std::vector<std::string> lexicon;
+	std::vector<std::string> concordance;
 	std::vector<AdjacencyListEntry> adjList;
 
 	void loadFromTxt()
 	{
-		std::ifstream fin("assets/lexicon/words.txt");
+		std::ifstream fin("assets/lexicon/lexicon.txt");
 		std::string input;
 		while (getline(fin, input))
 		{
 			lexicon.push_back(input);
+		}
+		fin.close();
+		fin.open("assets/lexicon/concordance.txt");
+		while (getline(fin, input))
+		{
+			concordance.push_back(input);
 		}
 		fin.close();
 		fin.open("assets/lexicon/adj_list.txt");
