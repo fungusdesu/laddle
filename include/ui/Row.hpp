@@ -35,7 +35,7 @@ public:
 	void shake();
 
 	void update();
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states [[maybe_unused]]) const override;
 
 private:
 	std::array<Tile, WORD_LENGTH> p_tiles;
