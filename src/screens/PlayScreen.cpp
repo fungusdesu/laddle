@@ -33,12 +33,12 @@ bool PlayScreen::handleInput(const sf::Event& event)
 	bool captured = false;
 	ResourceManager::checkActions(event);
 
-	if (ResourceManager::hasAction(GameAction::TEST_EXIT))
+	if (ResourceManager::hasAction(GameAction::PLAY_EXIT))
 	{
 		ScreenManager::retreat();
 		captured = true;
 	}
-	else if (ResourceManager::hasAction(GameAction::TEST_BACKSPACE))
+	else if (ResourceManager::hasAction(GameAction::PLAY_BACKSPACE))
 	{
 		if (rowStackTop.isEmpty() && p_rowStack.size() != 1)
 		{
@@ -58,7 +58,7 @@ bool PlayScreen::handleInput(const sf::Event& event)
 		}
 		captured = true;
 	}
-	else if (ResourceManager::hasAction(GameAction::TEST_ENTER))
+	else if (ResourceManager::hasAction(GameAction::PLAY_ENTER))
 	{
 		if (!rowStackTop.isFull())
 		{
