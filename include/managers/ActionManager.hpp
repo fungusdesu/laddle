@@ -2,6 +2,7 @@
 #include <array>
 #include <SFML/Graphics.hpp>
 
+// change this everytime you change GameAction. i fucking hate that there isn't a builtin way to count how many items there are in scoped enum
 constexpr auto GAME_ACTIONS_COUNT = 9;
 
 enum GameAction
