@@ -2,9 +2,6 @@
 #include <array>
 #include <SFML/Graphics.hpp>
 
-// change this everytime you change GameAction. i fucking hate that there isn't a builtin way to count how many items there are in scoped enum
-constexpr auto GAME_ACTIONS_COUNT = 9;
-
 enum GameAction
 {
 	MAIN_MENU_MOVE_UP,
@@ -17,7 +14,9 @@ enum GameAction
 	PLAY_MOVE_NEXT_ROW,
 	PLAY_BACKSPACE,
 	PLAY_ENTER,
-	PLAY_EXIT
+	PLAY_EXIT,
+
+	GAME_ACTIONS_COUNT_THIS_IS_NOT_A_VALID_GAME_ACTION_DO_NOT_ACTUALLY_USE_THIS_OR_NASAL_DEMON_WILL_COME_OUT_OF_YOUR_ASS
 };
 
 class ActionManager
@@ -31,5 +30,5 @@ public:
 	void clearActions();
 
 private:
-	std::array<bool, GAME_ACTIONS_COUNT> p_actionStates;
+	std::array<bool, GAME_ACTIONS_COUNT_THIS_IS_NOT_A_VALID_GAME_ACTION_DO_NOT_ACTUALLY_USE_THIS_OR_NASAL_DEMON_WILL_COME_OUT_OF_YOUR_ASS> p_actionStates;
 };

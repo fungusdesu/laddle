@@ -74,7 +74,7 @@ bool ActionManager::hasAction(const GameAction& action) const
 
 void ActionManager::clearActions()
 {
-	for (int i = 0; i < GAME_ACTIONS_COUNT; i++)
+	for (int i = 0; i < GAME_ACTIONS_COUNT_THIS_IS_NOT_A_VALID_GAME_ACTION_DO_NOT_ACTUALLY_USE_THIS_OR_NASAL_DEMON_WILL_COME_OUT_OF_YOUR_ASS; i++)
 	{
 		p_actionStates[i] = false;
 	}
