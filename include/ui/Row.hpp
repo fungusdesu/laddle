@@ -15,7 +15,6 @@ public:
 	bool isFull() const;
 	bool isEmpty() const;
 
-	sf::Vector2f getBasePosition() const;
 	sf::Vector2f getAnimatedPosition() const;
 
 	Tile getTileAtIndex(const int& i) const;
@@ -37,8 +36,6 @@ public:
 private:
 	std::array<Tile, WORD_LENGTH> p_tiles;
 	int p_iterator = 0;
-
-	sf::Vector2f p_position = {0.0f, 0.0f};
 
 	ShakeClock p_shakeClock;
 

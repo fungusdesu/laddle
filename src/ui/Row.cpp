@@ -18,7 +18,7 @@ constexpr auto TILE_HORIZONTAL_SPACING = 90;
 
 float Row::p_getShakeDisplacement() const
 {
-	auto x = p_shakeClock.SHAKE_AMPLITUDE.asSeconds() * std::sin(p_position.x * p_shakeClock.SHAKE_STRENGTH.asSeconds() * p_shakeClock.clock.getElapsedTime().asSeconds());
+	auto x = p_shakeClock.SHAKE_AMPLITUDE.asSeconds() * std::sin(getPosition().x * p_shakeClock.SHAKE_STRENGTH.asSeconds() * p_shakeClock.clock.getElapsedTime().asSeconds());
 	return x;
 }
 
@@ -37,15 +37,10 @@ bool Row::isEmpty() const
 	return p_iterator == 0;
 }
 
-sf::Vector2f Row::getBasePosition() const
-{
-	return p_position;
-}
-
 sf::Vector2f Row::getAnimatedPosition() const
 {
 	auto shakeDisplacement = p_getShakeDisplacement();
-	return {p_position.x + shakeDisplacement, p_position.y};
+	return {getPosition().x + shakeDisplacement, getPosition().y};
 }
 
 Tile Row::getTileAtIndex(const int& i) const
@@ -145,7 +140,7 @@ void Row::shake()
 
 void Row::update()
 {
-	auto currentTilePosition = getPosition();
+	auto currentTilePosition = getAnimatedPosition();
 	for (int i = 0; i < WORD_LENGTH; i++)
 	{
 		p_tiles[i].setPosition(currentTilePosition);
