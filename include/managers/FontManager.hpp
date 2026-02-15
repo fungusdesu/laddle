@@ -2,6 +2,11 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+enum class Font
+{
+	VCR_OSD_MONO
+};
+
 class FontManager
 {
 public:
@@ -9,9 +14,9 @@ public:
 	~FontManager() = default;
 	
 	void init();
-	void load(const std::string& key, const std::string& path);
-	const sf::Font& get(const std::string& name) const;
+	void load(const Font& key, const std::string& path);
+	const sf::Font& get(const Font& font) const;
 
 private:
-	std::unordered_map<std::string, sf::Font> p_fonts;
+	std::unordered_map<Font, sf::Font> p_fonts;
 };

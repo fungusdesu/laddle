@@ -101,7 +101,7 @@ void MainMenuScreen::p_drawSelector(sf::RenderTarget& window, const sf::Font& fo
 
 void MainMenuScreen::draw(sf::RenderTarget& window)
 {
-	const sf::Font& font = ResourceManager::getFont("VCR_OSD_MONO");
+	const sf::Font& font = ResourceManager::getFont(Font::VCR_OSD_MONO);
 
 	p_drawTitle(window, font);
 	p_drawMenuOptions(window, font);

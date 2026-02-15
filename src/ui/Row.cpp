@@ -159,7 +159,7 @@ void Row::update()
 void Row::draw(sf::RenderTarget& target, sf::RenderStates states [[maybe_unused]]) const
 {
 	sf::Vector2f currentTilePosition = getPosition();
-	const sf::Font& font = ResourceManager::getFont("VCR_OSD_MONO");
+	const sf::Font& font = ResourceManager::getFont(Font::VCR_OSD_MONO);
 	for (int i = 0; i < WORD_LENGTH; i++)
 	{
 		sf::RectangleShape tileRect({80.0f, 80.f});

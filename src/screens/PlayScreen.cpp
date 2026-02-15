@@ -221,7 +221,7 @@ void PlayScreen::update()
 
 void PlayScreen::draw(sf::RenderTarget& window)
 {
-	const sf::Font &font = ResourceManager::getFont("VCR_OSD_MONO");
+	const sf::Font &font = ResourceManager::getFont(Font::VCR_OSD_MONO);
 	
 	auto rowDrawingStartIndex = p_iterator - MAXIMUM_ROW_COUNT_PER_SIDE;
 	auto rowDrawingEndIndex = p_iterator + MAXIMUM_ROW_COUNT_PER_SIDE + 1;

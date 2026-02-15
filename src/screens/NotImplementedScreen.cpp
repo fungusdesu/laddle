@@ -32,6 +32,6 @@ void NotImplementedScreen::p_drawText(sf::RenderTarget& window, const sf::Font& 
 
 void NotImplementedScreen::draw(sf::RenderTarget& window)
 {
-	const sf::Font& font = ResourceManager::getFont("VCR_OSD_MONO");
+	const sf::Font& font = ResourceManager::getFont(Font::VCR_OSD_MONO);
 	p_drawText(window, font);
 }
