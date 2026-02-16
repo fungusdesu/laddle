@@ -84,4 +84,10 @@ namespace ResourceManager
 	{
 		audioManagerPtr->playSoundInputRow(std::forward<Ts>(yuke)...);
 	}
+
+	template <typename ...Ts>
+	void playSoundBackspaceLetter(Ts&&... yuke)
+	{
+		audioManagerPtr->playSoundBackspaceLetter(std::forward<Ts>(yuke)...);
+	}
 }

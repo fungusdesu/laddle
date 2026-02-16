@@ -10,7 +10,8 @@ enum class Musics
 enum class Sounds
 {
 	INPUT_LETTER,
-	INPUT_ROW
+	INPUT_ROW,
+	BACKSPACE_LETTER
 };
 
 struct Audio
@@ -29,8 +30,10 @@ public:
 	void init();
 
 	sf::Sound& getSound(const Sounds& sound);
+
 	void playSoundInputLetter();
 	void playSoundInputRow();
+	void playSoundBackspaceLetter();
 
 
 private:

@@ -139,7 +139,11 @@ bool PlayScreen::handleInput(const sf::Event &event)
 		if (!p_detachedHead)
 		{
 			if (rowStackTop.isEmpty() && p_rowStack.size() > 2) p_popRow();
-			else rowStackTop.popLetter();
+			else
+			{
+				rowStackTop.popLetter();
+				ResourceManager::playSoundBackspaceLetter();
+			}
 		}
 		captured = true;
 	}

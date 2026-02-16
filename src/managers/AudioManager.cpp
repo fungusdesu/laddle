@@ -16,7 +16,8 @@ struct MusicTableEntry
 
 constexpr SoundTableEntry SOUND_TABLE[] = {
 	{ Sounds::INPUT_LETTER, "./assets/sounds/input_letter.wav" },
-	{ Sounds::INPUT_ROW, "./assets/sounds/input_row.wav" }
+	{ Sounds::INPUT_ROW, "./assets/sounds/input_row.wav" },
+	{ Sounds::BACKSPACE_LETTER, "./assets/sounds/backspace_letter.wav" }
 };
 
 void AudioManager::loadAudio(const Sounds& key, const std::string& path)
@@ -54,6 +55,13 @@ void AudioManager::playSoundInputLetter()
 void AudioManager::playSoundInputRow()
 {
 	sf::Sound& sound = getSound(Sounds::INPUT_ROW);
+	sound.setVolume(20);
+	sound.play();
+}
+
+void AudioManager::playSoundBackspaceLetter()
+{
+	sf::Sound& sound = getSound(Sounds::BACKSPACE_LETTER);
 	sound.setVolume(20);
 	sound.play();
 }
