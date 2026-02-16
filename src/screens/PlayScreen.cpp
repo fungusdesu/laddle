@@ -192,6 +192,7 @@ bool PlayScreen::handleInput(const sf::Event &event)
 		{
 			p_iterator--;
 			p_detachedHead = true;
+			ResourceManager::playSoundMoveRow();
 		}
 	}
 	else if (ResourceManager::hasAction(GameAction::PLAY_MOVE_NEXT_ROW))
@@ -202,6 +203,7 @@ bool PlayScreen::handleInput(const sf::Event &event)
 			if (p_iterator == stackSize - 2)
 				p_detachedHead = false;
 			p_iterator++;
+			ResourceManager::playSoundMoveRow();
 		}
 	}
 

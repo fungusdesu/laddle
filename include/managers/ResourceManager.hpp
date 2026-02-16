@@ -96,4 +96,10 @@ namespace ResourceManager
 	{
 		audioManagerPtr->playSoundShakeRow(std::forward<Ts>(yuke)...);
 	}
+
+	template <typename ...Ts>
+	void playSoundMoveRow(Ts&&... yuke)
+	{
+		audioManagerPtr->playSoundMoveRow(std::forward<Ts>(yuke)...);
+	}
 }

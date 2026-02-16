@@ -12,7 +12,8 @@ enum class Sounds
 	INPUT_LETTER,
 	INPUT_ROW,
 	BACKSPACE_LETTER,
-	SHAKE_ROW
+	SHAKE_ROW,
+	MOVE_ROW
 };
 
 struct Audio
@@ -36,6 +37,7 @@ public:
 	void playSoundInputRow();
 	void playSoundBackspaceLetter();
 	void playSoundShakeRow();
+	void playSoundMoveRow();
 
 
 private:

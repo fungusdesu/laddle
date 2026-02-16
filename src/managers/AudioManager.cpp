@@ -18,7 +18,8 @@ constexpr SoundTableEntry SOUND_TABLE[] = {
 	{ Sounds::INPUT_LETTER, "./assets/sounds/input_letter.wav" },
 	{ Sounds::INPUT_ROW, "./assets/sounds/input_row.wav" },
 	{ Sounds::BACKSPACE_LETTER, "./assets/sounds/backspace_letter.wav" },
-	{ Sounds::SHAKE_ROW, "./assets/sounds/shake_row.wav" }
+	{ Sounds::SHAKE_ROW, "./assets/sounds/shake_row.wav" },
+	{ Sounds::MOVE_ROW, "./assets/sounds/move_row.wav" }
 };
 
 void AudioManager::loadAudio(const Sounds& key, const std::string& path)
@@ -70,6 +71,13 @@ void AudioManager::playSoundBackspaceLetter()
 void AudioManager::playSoundShakeRow()
 {
 	sf::Sound& sound = getSound(Sounds::SHAKE_ROW);
+	sound.setVolume(20);
+	sound.play();
+}
+
+void AudioManager::playSoundMoveRow()
+{
+	sf::Sound& sound = getSound(Sounds::MOVE_ROW);
 	sound.setVolume(20);
 	sound.play();
 }
