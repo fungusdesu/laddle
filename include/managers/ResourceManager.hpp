@@ -68,9 +68,9 @@ namespace ResourceManager
 	// ############ AUDIO MANAGER ############
 	// #######################################
 	template <typename ...Ts>
-	const sf::SoundBuffer& getSoundBuffer(Ts&&... yuke)
+	sf::Sound& getSoundBuffer(Ts&&... yuke)
 	{
-		return audioManagerPtr->getSoundBuffer(std::forward<Ts>(yuke)...);
+		return audioManagerPtr->getSound(std::forward<Ts>(yuke)...);
 	}
 
 	template <typename ...Ts>

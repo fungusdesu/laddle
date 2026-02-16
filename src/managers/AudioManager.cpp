@@ -4,45 +4,48 @@
 
 struct SoundTableEntry
 {
-	const Sound key;
+	const Sounds key;
 	const char* path;
 };
 
 struct MusicTableEntry
 {
-	const Music key;
+	const Musics key;
 	const char* path;
 };
 
 constexpr SoundTableEntry SOUND_TABLE[] = {
-	{ Sound::INPUT_LETTER, "./assets/sounds/input_letter.wav" }
+	{ Sounds::INPUT_LETTER, "./assets/sounds/input_letter.wav" }
 };
 
-void AudioManager::loadSoundBuffer(const Sound& key, const std::string& path)
+void AudioManager::loadAudio(const Sounds& key, const std::string& path)
 {
-	sf::SoundBuffer soundBuffer(path);
-	p_soundBuffers.insert({key, soundBuffer});
+	auto bufferPtr = std::make_unique<sf::SoundBuffer>(path);
+	sf::Sound sound(*bufferPtr);
+	Audio audio = {std::move(bufferPtr), sound};
+	p_audios.insert({key, std::move(audio)});
 }
 
 void AudioManager::init()
 {
 	for (const auto& entry : SOUND_TABLE)
 	{
-		loadSoundBuffer(entry.key, entry.path);
+		loadAudio(entry.key, entry.path);
 	}
 
-	// swag_assert(music.openFromFile("./assets/music/main.ogg"));
-	// music.play();
-	// music.setLooping(true);
+	// swag_assert(p_music.openFromFile("./assets/music/main.ogg"));
+	// p_music.play();
+	// p_music.setLooping(true);
 }
 
-const sf::SoundBuffer& AudioManager::getSoundBuffer(const Sound& sound) const
+sf::Sound& AudioManager::getSound(const Sounds& sound)
 {
-	return p_soundBuffers.at(sound);
+	return p_audios.at(sound).sound;
 }
 
-void AudioManager::playSoundInputLetter() const
+void AudioManager::playSoundInputLetter()
 {
-	sf::Sound sound(p_soundBuffers.at(Sound::INPUT_LETTER));
+	sf::Sound& sound = getSound(Sounds::INPUT_LETTER);
+	sound.setVolume(20);
 	sound.play();
 }

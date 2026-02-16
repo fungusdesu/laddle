@@ -204,6 +204,7 @@ bool PlayScreen::handleInput(const sf::Event &event)
 			if (!rowStackTop.isFull())
 			{
 				rowStackTop.pushLetter(letter);
+				ResourceManager::playSoundInputLetter();
 			}
 		}
 		captured = true;

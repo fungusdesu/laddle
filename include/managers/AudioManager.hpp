@@ -2,14 +2,20 @@
 #include <string>
 #include <SFML/Audio.hpp>
 
-enum class Music
+enum class Musics
 {
 	MAIN
 };
 
-enum class Sound
+enum class Sounds
 {
 	INPUT_LETTER
+};
+
+struct Audio
+{
+	std::unique_ptr<sf::SoundBuffer> bufferPtr;
+	sf::Sound sound;
 };
 
 class AudioManager
@@ -18,14 +24,14 @@ public:
 	explicit AudioManager() = default;
 	~AudioManager() = default;
 
-	void loadSoundBuffer(const Sound& key, const std::string& path);
+	void loadAudio(const Sounds& key, const std::string& path);
 	void init();
 
-	const sf::SoundBuffer& getSoundBuffer(const Sound& sound) const;
-	void playSoundInputLetter() const;
+	sf::Sound& getSound(const Sounds& sound);
+	void playSoundInputLetter();
 
 
 private:
-	std::unordered_map<Sound, sf::SoundBuffer> p_soundBuffers;
-	sf::Music music;
+	std::unordered_map<Sounds, Audio> p_audios;
+	sf::Music p_music;
 };
