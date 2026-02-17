@@ -42,6 +42,25 @@ void ActionManager::checkActions(const sf::Event& event)
 	}
 
 	/*
+		#######################################
+		########### NOT IMPLEMENTED ###########
+		#######################################
+	*/
+	if (keyPressedEvent)
+	{
+		auto scancode = keyPressedEvent->scancode;
+		p_actionStates[GameAction::ABOUT_MOVE_NEXT_PAGE] = (
+			scancode == sf::Keyboard::Scan::Right
+		);
+		p_actionStates[GameAction::ABOUT_MOVE_PREVIOUS_PAGE] = (
+			scancode == sf::Keyboard::Scan::Left
+		);
+		p_actionStates[GameAction::ABOUT_EXIT] = (
+			scancode == sf::Keyboard::Scan::Escape
+		);
+	}
+
+	/*
 		########################################
 		################# PLAY #################
 		########################################
