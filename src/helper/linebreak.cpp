@@ -11,7 +11,7 @@ std::string linebreak(const std::string& input, const int& maxSpace)
 
 	for (const auto& token : tokens)
 	{
-		if (token.size() + 1 > spaceLeft)
+		if (static_cast<int>(token.size()) + 1 > spaceLeft)
 		{
 			result += '\n';
 			spaceLeft = maxSpace - token.size();

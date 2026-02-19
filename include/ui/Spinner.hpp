@@ -11,7 +11,7 @@ public:
 	explicit Spinner(std::vector<std::string> options, const int& width, const int& initialValue = 0) : p_options(options), p_width(width), p_iterator(initialValue)
 	{
 		swag_assert(options.size() != 0);
-		swag_assert(initialValue >= 0 && initialValue < options.size());
+		swag_assert(initialValue >= 0 && initialValue < static_cast<int>(options.size()));
 	};
 
 	explicit Spinner(const int& start, const int& endPlusOne, const int& width, const int& initialValue = 0) : p_options(), p_width(width), p_iterator(initialValue)

@@ -46,7 +46,7 @@ void Spinner::setSize(const int& size)
 void Spinner::draw(sf::RenderTarget& target, [[maybe_unused]] sf::RenderStates states) const
 {
 	auto currentOption = p_options[p_iterator];
-	swag_assert(currentOption.size() < p_width - 2);
+	swag_assert(static_cast<int>(currentOption.size()) < p_width - 2);
 	
 	const sf::Font& font = ResourceManager::getFont(Font::VCR_OSD_MONO);
 
