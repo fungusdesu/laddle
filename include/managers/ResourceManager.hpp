@@ -67,7 +67,30 @@ namespace ResourceManager
 	// #######################################
 	// ############ AUDIO MANAGER ############
 	// #######################################
-	
+	template <typename ...Ts>
+	int getSFXVolume(Ts&&... yuke)
+	{
+		return audioManagerPtr->getSFXVolume(std::forward<Ts>(yuke)...);
+	}
+
+	template <typename ...Ts>
+	int getMusicVolume(Ts&&... yuke)
+	{
+		return audioManagerPtr->getMusicVolume(std::forward<Ts>(yuke)...);
+	}
+
+	template <typename ...Ts>
+	void setSFXVolume(Ts&&... yuke)
+	{
+		audioManagerPtr->setSFXVolume(std::forward<Ts>(yuke)...);
+	}
+
+	template <typename ...Ts>
+	void setMusicVolume(Ts&&... yuke)
+	{
+		audioManagerPtr->setMusicVolume(std::forward<Ts>(yuke)...);
+	}
+
 	template <typename ...Ts>
 	sf::Sound& getSoundBuffer(Ts&&... yuke)
 	{
