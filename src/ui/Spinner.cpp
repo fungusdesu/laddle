@@ -47,8 +47,8 @@ void Spinner::draw(sf::RenderTarget& target, [[maybe_unused]] sf::RenderStates s
 
 	int padLeftSize = (p_width - currentOption.size()) / 2;
 	int padRightSize = p_width - currentOption.size() - padLeftSize;
-	std::string padLeft(" ", padLeftSize);
-	std::string padRight(" ", padRightSize);
+	std::string padLeft(padLeftSize, ' ');
+	std::string padRight(padRightSize, ' ');
 
 	sf::Text spinner(font, "[" + padLeft + currentOption + padRight + "]", p_size);
 	target.draw(spinner);

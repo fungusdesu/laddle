@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <list>
 
 // Discrete slider showing one value at a time
 class Spinner : public sf::Transformable, public sf::Drawable
