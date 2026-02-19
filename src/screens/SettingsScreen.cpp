@@ -49,7 +49,7 @@ bool SettingsScreen::handleInput(const sf::Event &event)
 	{
 		ResourceManager::setMusicVolume(std::stoi(p_spinners[0]->getCurrentValue()));
 		ResourceManager::setSFXVolume(std::stoi(p_spinners[1]->getCurrentValue()));
-		
+
 		ScreenManager::retreat();
 		captured = true;
 	}
@@ -66,8 +66,21 @@ void SettingsScreen::draw(sf::RenderTarget &window) const
 {
 	const sf::Font &font = ResourceManager::getFont(Font::VCR_OSD_MONO);
 
+	sf::Text musicVolumeText(font, "Music:", 50);
+	musicVolumeText.setPosition({300.0f, 200.0f});
+	sf::Text SFXVolumeText(font, "SFX:", 50);
+	SFXVolumeText.setPosition({300.0f, 300.0f});
+
+	sf::Text selectorText(font, ">", 50);
+	auto selectorYPosition = p_selector * 100.0f + 200.0f;
+	auto lbounds = selectorText.getLocalBounds();
+	selectorText.setPosition({window.getSize().x / 4.0f - 2.0f * lbounds.size.x, selectorYPosition});
+
 	for (const auto& spinner : p_spinners)
 	{
 		window.draw(*spinner);
 	}
+	window.draw(musicVolumeText);
+	window.draw(SFXVolumeText);
+	window.draw(selectorText);
 }
