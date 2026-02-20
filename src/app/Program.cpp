@@ -7,8 +7,6 @@
 
 #include "managers/ResourceManager.hpp"
 
-#include "screens/MainMenuScreen.hpp"
-
 constexpr auto WINDOW_LENGTH = 1200;
 constexpr auto WINDOW_WIDTH = 800;
 
