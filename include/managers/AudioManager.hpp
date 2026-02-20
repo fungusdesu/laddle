@@ -50,8 +50,6 @@ public:
 	void playSoundShakeRow();
 	void playSoundMoveRow();
 
-
-
 private:
 	std::unordered_map<Sounds, Audio> p_audios;
 	sf::Music p_music;

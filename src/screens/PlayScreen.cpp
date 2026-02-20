@@ -132,6 +132,7 @@ bool PlayScreen::handleInput(const sf::Event &event)
 	if (ResourceManager::hasAction(GameAction::PLAY_EXIT))
 	{
 		ScreenManager::retreat();
+		ResourceManager::playSoundSelectMenuOption();
 		captured = true;
 	}
 	else if (ResourceManager::hasAction(GameAction::PLAY_BACKSPACE))

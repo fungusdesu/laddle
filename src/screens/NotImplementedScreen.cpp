@@ -11,6 +11,7 @@ bool NotImplementedScreen::handleInput(const sf::Event& event)
 	if (ResourceManager::hasAction(GameAction::NOT_IMPLEMENTED_EXIT))
 	{
 		ScreenManager::retreat();
+		ResourceManager::playSoundSelectMenuOption();
 		captured = true;
 	}
 

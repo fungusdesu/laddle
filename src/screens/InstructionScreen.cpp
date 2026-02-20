@@ -24,6 +24,7 @@ bool InstructionScreen::handleInput(const sf::Event &event)
 		if (p_iterator < MAX_INSTRUCTION_PAGES - 1)
 		{
 			p_iterator++;
+			ResourceManager::playSoundMoveMenuOption();
 			captured = true;
 		}
 	}
@@ -32,12 +33,14 @@ bool InstructionScreen::handleInput(const sf::Event &event)
 		if (p_iterator > 0)
 		{
 			p_iterator--;
+			ResourceManager::playSoundMoveMenuOption();
 			captured = true;
 		}
 	}
 	else if (ResourceManager::hasAction(GameAction::INSTRUCTION_EXIT))
 	{
 		ScreenManager::retreat();
+		ResourceManager::playSoundSelectMenuOption();
 		captured = true;
 	}
 

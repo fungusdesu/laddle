@@ -73,6 +73,7 @@ bool SettingsScreen::handleInput(const sf::Event &event)
 		ResourceManager::setSFXVolume(std::stoi(p_spinners[1]->getCurrentValue()));
 
 		ScreenManager::retreat();
+		ResourceManager::playSoundSelectMenuOption();
 		captured = true;
 	}
 
