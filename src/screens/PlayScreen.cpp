@@ -136,7 +136,7 @@ bool PlayScreen::handleInput(const sf::Event &event)
 	}
 	else if (ResourceManager::hasAction(GameAction::PLAY_BACKSPACE))
 	{
-		if (!p_detachedHead)
+		if (!p_winnar && !p_detachedHead)
 		{
 			if (rowStackTop.isEmpty() && p_rowStack.size() > 2) p_popRow();
 			else
