@@ -8,6 +8,7 @@
 #include "screens/PlayScreen.hpp"
 #include "screens/InstructionScreen.hpp"
 #include "screens/SettingsScreen.hpp"
+#include "screens/PauseScreen.hpp"
 
 class ScreenManager
 {

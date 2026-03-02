@@ -129,9 +129,9 @@ bool PlayScreen::handleInput(const sf::Event &event)
 	bool captured = false;
 	ResourceManager::checkActions(event);
 
-	if (ResourceManager::hasAction(GameAction::PLAY_EXIT))
+	if (ResourceManager::hasAction(GameAction::PLAY_PAUSE))
 	{
-		ScreenManager::retreat();
+		ScreenManager::advance(GameState::PAUSE);
 		ResourceManager::playSoundSelectMenuOption();
 		captured = true;
 	}

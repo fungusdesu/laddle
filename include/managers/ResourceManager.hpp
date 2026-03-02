@@ -15,6 +15,7 @@ enum class GameState
 	PLAY,
 	INSTRUCTION,
 	SETTINGS,
+	PAUSE,
 	NOT_IMPLEMENTED
 };
 

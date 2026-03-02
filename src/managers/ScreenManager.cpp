@@ -44,6 +44,13 @@ void ScreenManager::advance(const GameState& nextState)
 			break;
 		}
 
+		case GameState::PAUSE:
+		{
+			p_stateStack.push(GameState::PAUSE);
+			p_screenStack.push(std::make_unique<PauseScreen>());
+			break;
+		}
+
 		case GameState::NONE:
 		{
 			p_shouldExit = true;
